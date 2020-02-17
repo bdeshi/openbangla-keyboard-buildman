@@ -6,7 +6,7 @@ RELEASE_STUB="OpenBangla-Keyboard_${RELEASE_VERSION}-"
 makeDeb () {
     RELEASE_FILENAME="${RELEASE_STUB}${DIST}.deb"
     apt-get -y install build-essential cmake libibus-1.0-dev qt5-default rustc cargo ninja-build curl
-    git clone https://github.com/OpenBangla/OpenBangla-Keyboard.git /src
+    git clone https://github.com/OpenBangla/OpenBangla-Keyboard.git -b 1.5.0 /src
     git -C /src submodule update --init --recursive
     cmake -H/src -B/build -GNinja -DCPACK_GENERATOR=DEB
     ninja package -C /build
@@ -16,7 +16,7 @@ makeDeb () {
 makeRpm () {
     RELEASE_FILENAME="${RELEASE_STUB}${DIST}.rpm"
     dnf install -y --allowerasing @buildsys-build cmake ibus-devel qt5-qtdeclarative-devel rust cargo ninja-build
-    git clone https://github.com/OpenBangla/OpenBangla-Keyboard.git /src
+    git clone https://github.com/OpenBangla/OpenBangla-Keyboard.git -b 1.5.0 /src
     git -C /src submodule update --init --recursive
     cmake -H/src -B/build -GNinja -DCPACK_GENERATOR=RPM
     ninja package -C /build
